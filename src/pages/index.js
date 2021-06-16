@@ -1,14 +1,37 @@
 import * as React from "react"
+import { useState } from 'react'
 import { StaticImage } from "gatsby-plugin-image"
+import ReactModal from 'react-modal'
 import resume from '../../public/static/Daniel-Gamliel-Resume.pdf'
 import "../css/index.css"
 
 let boxTransition = "transition duration-500 ease-in-out transform hover:-translate-y-3"
-let boxAesthetic = "flex flex-wrap items-center justify-center align-center bg-off-white m-3 text-lg rounded large-shadow h-60 pt-3 cursor-pointer ";
-let boxStyling = boxAesthetic + boxTransition;
+let boxAesthetic = "flex flex-wrap items-center justify-center align-center bg-off-white m-3 text-lg rounded large-shadow h-60 pt-3 cursor-pointer";
+let boxStyling = boxAesthetic + " " + boxTransition;
 
-// markup
+const modalStyling = {
+  content: {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '90vh',
+    height: '80vh'
+  }
+}
+
 const IndexPage = () => {
+
+  const [isOpen, setOpen] = useState(false);
+
+  const openModal = () => {
+    setOpen(true);
+  }
+
+  const closeModal = () => {
+    setOpen(false);
+  }
+
   return (
 
     <div>
@@ -33,9 +56,16 @@ const IndexPage = () => {
           </div>
         </nav>
       </header>
+
+      <ReactModal
+        isOpen={isOpen}
+        parentSelector={() => document.querySelector('#___gatsby')}
+        style={modalStyling}
+      >
+      </ReactModal>
       
       {/* Photo and Header */}
-      <main class="relative">
+      <main>
 
         <section class="text-center pt-8 custom-spacing">
 
@@ -66,7 +96,10 @@ const IndexPage = () => {
 
           <div class="grid grid-cols-3 gap-10">
 
-            <div class={boxStyling}>
+            <div 
+              class={boxStyling}
+              onClick={openModal}
+            >
               <StaticImage 
                 src="../images/Motorola_Logo.png" 
                 alt="Motorola Logo"
@@ -77,7 +110,10 @@ const IndexPage = () => {
               <h3 class="text-lg">Embedded Software Engineer</h3>
             </div>
 
-            <div class={boxStyling}>
+            <div 
+              class={boxStyling}
+              onClick={openModal}
+            >
               <StaticImage 
                 src="../images/Aleysian.png" 
                 alt="Aleysian Logo"
@@ -88,7 +124,10 @@ const IndexPage = () => {
               <h3 class="text-lg">Technical Consultant</h3>
             </div>
 
-            <div class={boxStyling}>
+            <div 
+              class={boxStyling}
+              onClick={openModal}
+            >
               <StaticImage 
                 src="../images/Qualcomm.png" 
                 alt="Qualcomm Logo"
