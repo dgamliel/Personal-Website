@@ -4,7 +4,7 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby minimal starter
+  Built Using Gatsby
 </h1>
 
 ## 🚀 Quick start
